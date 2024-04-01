@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: api-graphql-test
+  graphql:
+    graphiql:
+      enabled: true # graphiql? ?? ??? ?? ?? (localhost:8080/graphiql)
+      printer:
+        enabled: true # show-sql? ?? graphql ??? ?? ??
