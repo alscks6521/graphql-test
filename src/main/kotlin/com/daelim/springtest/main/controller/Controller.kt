@@ -11,6 +11,15 @@ import java.util.*
 
 @RestController
 class NicknameController {
+
+}
+
+
+@RestController
+class Controller {
+    private val tests = mutableListOf<TestDto>()
+
+
     @PostMapping("/nickname")
     fun postNickname(): ResponseEntity<String> {
         val adjectives = arrayOf("용감한", "귀여운", "멋진", "친절한", "똑똑한")
@@ -18,13 +27,9 @@ class NicknameController {
         val randomNickname = "${adjectives[Random().nextInt(adjectives.size)]} ${nouns[Random().nextInt(nouns.size)]}"
         return ResponseEntity.ok(randomNickname)
     }
-}
-
-@RestController
-class Controller {
-    private val tests = mutableListOf<TestDto>()
 
     @PostMapping("/test")
+
     fun postTestDto(
         @RequestBody testDtoRequest: TestDtoRequest
     ): ResponseEntity<TestDto> {
@@ -39,6 +44,7 @@ class Controller {
         tests.add(test)
         return ResponseEntity.ok().body(test)
     }
+
     @GetMapping("/test")
     fun getAllTestDto(
     ): ResponseEntity<List<TestDto>> {
@@ -50,7 +56,7 @@ class Controller {
     fun getTestDto(
         @PathVariable("id") userId: String
     ): ResponseEntity<TestDto> {
-        val response = tests.firstOrNull{it.id == userId}
+        val response = tests.firstOrNull { it.id == userId }
         return ResponseEntity.ok().body(response)
     }
 }
