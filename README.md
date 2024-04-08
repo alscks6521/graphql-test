@@ -24,6 +24,9 @@
 **브랜치 :** Master -> Develop ⇉ Feature(각자 브랜치...등)  
 
 **Pull Request 사용**  
+#
+<img width="700" alt="image" src="https://github.com/alscks6521/api-test/assets/112923685/28cd8294-0166-4fd4-9bae-0c887361d871">
+<img width="700" alt="image" src="https://github.com/alscks6521/api-test/assets/112923685/f1ef04ce-5f14-4faa-bc39-b5ebc9b7c794">
 
 
 ---
