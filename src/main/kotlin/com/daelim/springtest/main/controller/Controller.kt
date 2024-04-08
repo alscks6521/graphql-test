@@ -23,7 +23,7 @@ class Controller {
             address = faker.address().fullAddress(),
             email = faker.internet().emailAddress(),
             tel = faker.phoneNumber().phoneNumber(),
-            age = Random().nextInt(100)
+            age = Random().nextInt(10)
         )
         tests.add(test)
         return ResponseEntity.ok().body(test)
