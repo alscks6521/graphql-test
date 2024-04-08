@@ -11,21 +11,36 @@ import kotlin.random.Random
 
 @RestController
 class Controller {
+    private val tests = mutableListOf<TestDto>()
 
-    @RestController
-    class NicknameController {
-        @PostMapping("/test")
-        fun postNickname(@RequestBody testDtoRequest: TestDtoRequest): ResponseEntity<TestDto> {
-            val adjectives = arrayOf("용감한", "귀여운", "멋진", "친절한", "똑똑한")
-            val nouns = arrayOf("사자", "토끼", "여우", "너구리", "펭귄")
+    @PostMapping("/test")
+    fun postNickname(@RequestBody testDtoRequest: TestDtoRequest): ResponseEntity<TestDto> {
+        val adjectives = arrayOf("용감한", "귀여운", "멋진", "친절한", "똑똑한")
+        val nouns = arrayOf("사자", "토끼", "여우", "너구리", "펭귄")
 
-            val randomNickname = "${adjectives[Random.nextInt(adjectives.size)]} ${nouns[Random.nextInt(nouns.size)]}"
+        val randomNickname = "${adjectives[Random.nextInt(adjectives.size)]} ${nouns[Random.nextInt(nouns.size)]}"
 
-            val testDto = TestDto(
-                id = testDtoRequest.id,
-                nickname = randomNickname
-            )
-            return ResponseEntity.ok(testDto)
-        }
+        val testDto = TestDto(
+            id = testDtoRequest.id,
+            nickname = randomNickname
+        )
+        tests.add(testDto)
+        return ResponseEntity.ok().body(testDto)
     }
+
+    @GetMapping("/test")
+    fun getAllTestDto(
+    ): ResponseEntity<List<TestDto>> {
+        val response = tests
+        return ResponseEntity.ok().body(response)
+    }
+
+    @GetMapping("/test/{id}")
+    fun getTestDto(
+        @PathVariable("id") userId: String
+    ): ResponseEntity<TestDto> {
+        val response = tests.firstOrNull{it.id == userId}
+        return ResponseEntity.ok().body(response)
+    }
+
 }
