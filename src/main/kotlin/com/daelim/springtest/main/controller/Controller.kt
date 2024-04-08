@@ -10,6 +10,17 @@ import org.springframework.web.bind.annotation.*
 import java.util.*
 
 @RestController
+class NicknameController {
+    @PostMapping("/nickname")
+    fun postNickname(): ResponseEntity<String> {
+        val adjectives = arrayOf("용감한", "귀여운", "멋진", "친절한", "똑똑한")
+        val nouns = arrayOf("사자", "토끼", "여우", "너구리", "펭귄")
+        val randomNickname = "${adjectives[Random().nextInt(adjectives.size)]} ${nouns[Random().nextInt(nouns.size)]}"
+        return ResponseEntity.ok(randomNickname)
+    }
+}
+
+@RestController
 class Controller {
     private val tests = mutableListOf<TestDto>()
 
