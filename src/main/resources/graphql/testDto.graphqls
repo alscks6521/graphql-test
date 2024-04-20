@@ -1,16 +1,17 @@
 type Test {
     id: ID!
-    address: String!
-    email: String!
-    tel: String
-    age: Int!
+    nickname: String!
 }
 
 type Query {
-    findAllTests: [Test],
+    findAllTests: [Test]
     findTestById(id: ID!): Test
 }
 
 type Mutation {
-    createTest(userId: String): Test
+    createTest(testDtoInput: TestDtoInput!): Test
+}
+
+input TestDtoInput {
+    id: String!
 }
