@@ -1,35 +1,58 @@
-//package com.daelim.springtest.main.resolver
-//
-//import com.daelim.springtest.main.api.model.dto.TestDto
-//import graphql.kickstart.tools.GraphQLMutationResolver
-//import graphql.kickstart.tools.GraphQLQueryResolver
-//import net.datafaker.Faker
-//import org.springframework.stereotype.Component
-//import java.util.*
-//
-//@Component
-//class PostResolver : GraphQLQueryResolver, GraphQLMutationResolver {
-//    private val tests = mutableListOf<TestDto>()
-//
-//    val faker = Faker(Locale.KOREA)
-//
-//    fun findAllTests(): List<TestDto> {
-//        return tests
-//    }
-//
-//    fun findTestById(id: String): TestDto? {
-//        return tests.find { it.id == id }
-//    }
-//
-////    fun createTest(userId: String): TestDto {
-////        val test = TestDto(
-////            id = userId,
-////            address = faker.address().fullAddress(),
-////            email = faker.internet().emailAddress(),
-////            tel = faker.phoneNumber().phoneNumber(),
-////            age = Random().nextInt(100)
-////        )
-////        tests.add(test)
-////        return test
-////    }
-//}
+package com.daelim.springtest.main.resolver
+
+import com.daelim.springtest.main.api.model.dto.TestDto
+import com.daelim.springtest.main.api.model.dto.TestDtoInput
+import graphql.kickstart.tools.GraphQLMutationResolver
+import graphql.kickstart.tools.GraphQLQueryResolver
+import org.springframework.stereotype.Component
+import kotlin.random.Random
+
+    @Component
+    class PostResolver : GraphQLQueryResolver, GraphQLMutationResolver {
+    // 김민성, 김시온 --------------------------------------------------------------------------------
+    private val tests = mutableListOf<TestDto>()
+
+    // 전체 조회 기능
+    fun findAllTests(): List<TestDto> {
+        return  tests
+    }
+
+    // Id로 조회 기능
+    fun findTestById(id: String): TestDto? {
+        return tests.find { it.id == id }
+    }
+
+    // 공통된 닉네임 조회 검색어 기능
+    fun findSerach(nickname: String): List<TestDto> {
+        // ignoreCase = true : 대소문자를 구분하지 않고 두 문자열이 같은지 비교
+        return tests.filter { it.nickname.contains(nickname, ignoreCase = true) }
+    }
+
+    // 김민기, 백예준 --------------------------------------------------------------------------------
+    fun createTest(
+        testDtoInput: TestDtoInput
+    ): TestDto {
+        // id중복 확인
+        val existingTest = tests.find { it.id == testDtoInput.id }
+        if (existingTest != null) {
+            throw Exception("ID already exists")
+        }
+
+        // 랜덤 닉네임 생성
+        val adjectives = arrayOf("용감한", "귀여운", "멋진", "친절한", "똑똑한")
+        val nouns = arrayOf("사자", "토끼", "여우"    , "너구리", "펭귄")
+        val randomNickname = "${adjectives[Random.nextInt(adjectives.size)]} ${nouns[Random.nextInt(nouns.size)]}"
+
+        //   새로운 TestDto 객체 생성
+        val newTest = TestDto(
+            id = testDtoInput.id,
+            nickname = randomNickname
+        )
+
+        // 새로운 객체를 tests 리스트에 추가
+        tests.add(newTest)
+
+        // 반환
+        return newTest
+    }
+}
