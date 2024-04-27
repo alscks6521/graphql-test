@@ -9,12 +9,17 @@ import java.util.*
 
 @Component
 class PostResolver : GraphQLQueryResolver, GraphQLMutationResolver {
+    // 김민성, 김시온 --------------------------------------------------------------------------------
     private val tests = mutableListOf<TestDto>()
 
-    // 쿼리 리졸버 비워둠
+    // 쿼리 리졸버 비워둠. Find 작업
     fun findAllTests(): List<TestDto>? = null
+
+
+    // Find 작업
     fun findTestById(id: ID): TestDto? = null
 
+    // 김민기, 백예준 --------------------------------------------------------------------------------
     fun createTest(testDtoInput: TestDtoInput): TestDto {
         // id중복 확인
         val existingTest = tests.find { it.id == testDtoInput.id }
