@@ -1,11 +1,9 @@
 package com.daelim.springtest.main.controller
 
 import com.daelim.springtest.main.api.model.dto.TestDto
-import com.daelim.springtest.main.api.model.dto.TestDtoRequest
-
+import com.daelim.springtest.main.api.model.dto.TestDtoInput
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-
 import kotlin.random.Random
 
 
@@ -16,7 +14,7 @@ class Controller {
     @PostMapping("/test")
 
 
-    fun postNickname(@RequestBody testDtoRequest: TestDtoRequest): ResponseEntity<Any> {
+    fun postNickname(@RequestBody testDtoRequest: TestDtoInput): ResponseEntity<Any> {
         val existingTest = tests.find { it.id == testDtoRequest.id }
         if (existingTest != null) {
             return ResponseEntity.badRequest().body("ID already exists")

@@ -38,6 +38,7 @@ dependencies {
     implementation("com.graphql-java-kickstart:graphql-spring-boot-starter:15.1.0")
     implementation("com.graphql-java-kickstart:graphiql-spring-boot-starter:11.1.0")
 
+
 //	util
     implementation("net.datafaker:datafaker:2.1.0")
 }
