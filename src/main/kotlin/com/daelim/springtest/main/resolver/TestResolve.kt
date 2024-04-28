@@ -14,11 +14,14 @@ import kotlin.random.Random
 
     // 전체 조회 기능
     fun findAllTests(): List<TestDto> {
+        // TestDto 객체를 리스트 형태로 반환
         return  tests
     }
 
     // Id로 조회 기능
     fun findTestById(id: String): TestDto? {
+        // id와 일치하는 TestDto 객체를 찾아서 반환
+        // 없다면 null 반환
         return tests.find { it.id == id }
     }
 
