@@ -1,16 +1,22 @@
 type Test {
     id: ID!
-    address: String!
-    email: String!
-    tel: String
-    age: Int!
+    nickname: String!
 }
 
 type Query {
-    findAllTests: [Test],
+    findAllTests: [Test]
     findTestById(id: ID!): Test
+    findSerach(nickname: String!): [Test]
 }
 
+
 type Mutation {
-    createTest(userId: String): Test
+    createTest(testDtoInput: TestDtoInput!): Test
+}
+
+# Input 스키마 정의의 명시성: GraphQL 스키마는 API의 구조를 정의
+# 타입 검증: GraphQL 서버는 실행 시점에서 input 타입에 대한 검증을 자동으로 수행
+# 비록 서버 측에서 TestDtoInput 데이터 클래스를 이미 정의했다고 하더라도, GraphQL 스키마 내에서 해당 input 타입을 유지하는 것이 중요
+input TestDtoInput {
+    id: String!
 }

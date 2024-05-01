@@ -6,6 +6,6 @@ data class TestDto(
 
 )
 
-data class TestDtoRequest(
+data class TestDtoInput(
     val id: String
 )
