@@ -1,3 +1,5 @@
+##Jira https://daelim-univ.atlassian.net/browse/CET-55
+
 ## Git협업, GraphQL 수업 
 
 ### 기존 주제 : 
