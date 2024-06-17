@@ -1,4 +1,4 @@
-## CET-1
+## CET-1 jira https://daelim-univ.atlassian.net/browse/CET-46
 테스트 생성 뮤테이션 리졸버 구현
 
 https://daelim-univ.atlassian.net/jira/software/c/projects/CET/boards/5?label=FIRST&search=minki%20kim&selectedIssue=CET-46
